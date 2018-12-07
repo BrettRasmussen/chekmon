@@ -1,0 +1,37 @@
+<h1>Listing Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Given name</th>
+      <th>Surname</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.email %></td>
+      <td><%= password_display(user.password) %></td>
+      <td><%= user.given_name %></td>
+      <td><%= user.surname %></td>
+
+      <td>
+        <%= link "Show", to: Routes.user_path(@conn, :show, user) %>
+        |
+        <%= link "Edit", to: Routes.user_path(@conn, :edit, user) %>
+        |
+        <%= link "Delete", to: Routes.user_path(@conn, :delete, user),
+                 method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New User", to: Routes.user_path(@conn, :new) %></span>
