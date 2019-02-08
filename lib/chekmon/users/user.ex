@@ -14,6 +14,7 @@ defmodule Chekmon.Users.User do
   end
 
   @doc false
+
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :password, :given_name, :surname])

@@ -1,35 +1,24 @@
 <section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed and maintainability.</p>
-</section>
+  <h1>Log In</h1>
+  <div>
+    <%= form_for @changeset, Routes.session_path(@conn, :create), fn f -> %>
+      <div class="input_wrapper">
+        <label>Email Address</label>
+        <%= text_input f, :email %>
+      </div>
 
-<section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.4/CHANGELOG.md">v1.4 Changelog</a>
-      </li>
-    </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-    </ul>
-  </article>
+      <div class="input_wrapper">
+        <label>Password</label>
+        <%= password_input f, :password %>
+      </div>
+
+      <div class="input_wrapper">
+        <%= submit "Log In" %>
+      </div>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <h2>Or <%= link("Sign Up", to: Routes.user_path(@conn, :new)) %></h2>
 </section>

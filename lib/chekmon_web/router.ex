@@ -9,16 +9,24 @@ defmodule ChekmonWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :logged_in do
+    plug Chekmon.CurrentUser
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", ChekmonWeb do
-    pipe_through :browser
+    pipe_through [:browser, :logged_in]
 
     get "/", PageController, :index
 
+    get "/signup", UserController, :new
     resources "/users", UserController
+
+    get "/logout", SessionController, :delete
+    resources "/sessions", SessionController, only: [:create, :delete]
   end
 
   # Other scopes may use custom stacks.
