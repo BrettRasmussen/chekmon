@@ -49,3 +49,6 @@ tags
 # Convenience stuff for my system
 tmp/
 .DS_Store
+
+# Supporting files that don't belong in version control.
+/misc/
